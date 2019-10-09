@@ -1,0 +1,18 @@
+/*
+classes: .class{}
+ids: #{}
+classic elts: body{}
+*/
+
+.container-a {
+    background: lightblue;
+}
+
+.container-b {
+    background: rgb(10, 10, 10)
+}
+
+.initImage {
+    max-height: 400px;
+}
+
