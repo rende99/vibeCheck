@@ -41,6 +41,7 @@ router.post('/demo', parsePost, function (req, res) {
 
 router.delete('/*', parseDelete, function (req, res) {
   const result = req.handleDelete(userStore);
+  
   if (typeof result !== 'undefined') {
     res.send({result})
   }
