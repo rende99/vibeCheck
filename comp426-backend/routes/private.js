@@ -22,7 +22,7 @@ router.get('/*', parseGet, function (req, res) {
   }
 });
 
-router.post('/*', parsePost, function (req, res) {
+router.post('/demo', parsePost, function (req, res) {
   const result = req.handlePost(privateStore);
   if (typeof result !== 'undefined') {
     res.send({result})

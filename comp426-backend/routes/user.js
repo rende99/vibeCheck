@@ -26,7 +26,7 @@ router.get('/*', parseGet, function (req, res) {
 router.post('/demo', parsePost, function (req, res) {
   const result = req.handlePost(userStore);
   if (typeof result !== 'undefined') {
-    //res.send({result})
+    res.send({result})
     userStore.set(`demographic`, {
       gender: req.body.data,
       age: req.body.data,
