@@ -5,7 +5,7 @@ classic elts: body{}
 */
 
 .container-a {
-    background: lightblue;
+    background: #3D5F73;
 }
 
 .container-b {
@@ -15,4 +15,6 @@ classic elts: body{}
 .initImage {
     max-height: 400px;
 }
-
+.custom-range::-webkit-slider-thumb {
+    background: rgb(77, 77, 77);
+}

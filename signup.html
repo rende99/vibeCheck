@@ -7,7 +7,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="extraStyle.css">
     <title>Sign up</title>
@@ -17,10 +20,10 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="signup.js" type="module"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <div class="container" id="firstContainer" style="width: 40%">
         <h1 class="display-3 text-center">Signing up...</h1>
         <form>
@@ -35,8 +38,170 @@
             <div>
                 <small>already have an account? <a href="login.html">Login here</a></small>
             </div>
-            <a class="btn btn-primary" href="#" role="button" id="submitButton">Submit</a>
         </form>
+    </div>
+    <div class="container" id="hid2" style="width: 40%; padding: 40px;" onsubmit="return false">
+        <form onsubmit="return false">
+            <div class="form-group shadow p-3 mb-5 bg-white rounded" id="genderSelector">
+                <h4>What is your gender?</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="maleRadio" value="male">
+                    <label class="form-check-label" for="maleRadio">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="femaleRadio" value="female">
+                    <label class="form-check-label" for="femaleRadio">
+                        Female
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="otherRadio" value="other">
+                    <label class="form-check-label" for="otherRadio">
+                        Other
+                    </label>
+                </div> 
+            </div>
+        </form>
+        <form onsubmit="return false">
+            <div class="form-group shadow p-3 mb-5 bg-white rounded">
+                <h4>What is your Age?</h4>
+                <input type="email" class="form-control" id="userAge" placeholder="Enter Age">
+            </div>
+            <div class="form-group shadow p-3 mb-5 bg-white rounded">
+                <h4>Where are you from?</h4>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="stateSelector">
+                        <option selected>Choose...</option>
+                        <option value="AWAY">Outside of the USA</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DC">District of Columbia</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="IA">Iowa</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MD">Maryland</option>
+                        <option value="ME">Maine</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MT">Montana</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NY">New York</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VA">Virginia</option>
+                        <option value="VT">Vermont</option>
+                        <option value="WA">Washington</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group shadow p-3 mb-5 bg-white rounded">
+                <h4>What is the highest form of education you've completed?</h4>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="educationSelector">
+                        <option selected>Choose...</option>
+                        <option value="PMS">Primary School</option>
+                        <option value="SES">Secondary School</option>
+                        <option value="SHS">Some High School</option>
+                        <option value="AHS">High School (GED)</option>
+                        <option value="SUN">Some University</option>
+                        <option value="ADG">Associate's Degree</option>
+                        <option value="ADG">Bachelor's Degree</option>
+                        <option value="ADG">Master's Degree</option>
+                        <option value="ADG">Doctorate</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group shadow p-3 mb-5 bg-white rounded">
+                <h4>What's your Race/Ethnicity?</h4>
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="raceSelector">
+                        <option selected>Choose...</option>
+                        <option value="BLK">Black / African American</option>
+                        <option value="AMI">American Indian / Alaska Native</option>
+                        <option value="ASI">Asian</option>
+                        <option value="NHW">Native Hawaiian or Other Pacific Islander</option>
+                        <option value="WHT">White</option>
+                        <option value="HIS">Hispanic or Latinx</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group shadow p-3 mb-5 bg-white rounded" id="affiliationSelector">
+                <h4>Where on the Political Spectrum are you?</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="altright" value="altright">
+                    <label class="form-check-label" for="altright">
+                        Alt-Right
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="conservative" value="conservative">
+                    <label class="form-check-label" for="conservative">
+                        Conservative
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="moderate" value="moderate">
+                    <label class="form-check-label" for="moderate">
+                        Moderate
+                    </label>
+                </div> 
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="libertarian" value="libertarian">
+                    <label class="form-check-label" for="libertarian">
+                        Libertarian
+                    </label>
+                </div> 
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="liberal" value="liberal">
+                    <label class="form-check-label" for="liberal">
+                        Liberal
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="socialist" value="socialist">
+                    <label class="form-check-label" for="socialist">
+                        Socialist
+                    </label>
+                </div>
+            </div>
+        </form>
+        <a class="btn btn-primary" href="#" role="button" id="finishButton">Finish</a>
     </div>
 
 

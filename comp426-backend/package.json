@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "bootstrap": "^4.3.1",
+    "bulma": "^0.8.0",
     "cookie-parser": "~1.4.4",
     "cross-env": "^5.2.1",
     "data-store": "^3.1.0",

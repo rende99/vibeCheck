@@ -10,7 +10,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="extraStyle.css">
-    <title>Welcome to TBD</title>
+    <title>Home</title>
 </head>
 <body>
 
@@ -19,6 +19,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script src="node_modules/axios/dist/axios.js"></script>
+    <script src="landing.js" type="module"></script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,10 +31,13 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" onClick="document.getElementById('news').scrollIntoView();">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Today's NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNews</a>
+                <a class="nav-link" onClick="document.getElementById('search').scrollIntoView();">Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Today's Analysis</a>
             </li>
             </ul>
             <ul class="nav navbar-nav navbar-right ml-auto">
@@ -40,51 +46,175 @@
                 </li>
             </ul>
                 
-            </form>
         </div>
     </nav>
-    <div class="container-a">
+    <div class="container-b" id="news">
         <div class="container-fluid align-middle">
-            <h1 class="display-3 text-center">Welcome to a better way to stay informed</h1>
-            <div class="row justify-content-center">
-                <img src="img/20160930_demsrepubs_DonkeyHotey_0.jpg" class="img-fluid initImage" alt="Responsive image">
+            <h1 class="display-3 text-center">Today's Assigned Articles</h1>
+            <h5 class="h5 text-center" id="timer"><b>New Articles in:</b> </h5>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                    <a id="articleLink1" target="_blank" href="http://google.com">
+                    <div id="a1container" class="shadow p-3 mb-5 bg-white rounded">
+                        <h4 id="a1Title">...</h4>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <div class="shadow p-3 mb-5 rounded text-muted" style="background-color:rgb(255,255,255)" id="a1PB">
+                        <p><b>Bias</b></p>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <b>Liberal</b>
+                            </div>
+                            <div class="col-7">
+                                <input type="range" disabled min="-10" max="10" class="custom-range a1Range" id="a1Range">                            
+                            </div>
+                            <div class="col-sm">
+                                <b>Conservative</b>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
-            <h4 class="text-center font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Aenean nec quam et elit luctus posuere. Nullam ac dolor in mi vestibulum tristique vitae
-                 nec velit. Nunc vestibulum commodo urna. Aenean sagittis justo vel vulputate ultricies. 
-                 Aenean et sagittis sem. Nunc quis enim quis nisi tempus molestie vitae eget urna. Morbi
-                  quis luctus urna. Proin congue facilisis velit in malesuada.
-            </h4>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                    <a id="articleLink2" target="_blank" href="http://google.com">
+                    <div id="a2container" class="shadow p-3 mb-5 bg-white rounded">
+                        <h4 id="a2Title">...</h4>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <div class="shadow p-3 mb-5 rounded text-muted" style="background-color:rgb(255,255,255)" id="a2PB">
+                        <p><b>Bias</b></p>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <b>Liberal</b>
+                            </div>
+                            <div class="col-7">
+                                <input type="range" disabled min="-10" max="10" class="custom-range a2Range" id="a2Range">                            
+                            </div>
+                            <div class="col-sm">
+                                <b>Conservative</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                    <a id="articleLink3" target="_blank" href="http://google.com">
+                    <div id="a3container" class="shadow p-3 mb-5 bg-white rounded">
+                        <h4 id="a3Title">...</h4>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <div class="shadow p-3 mb-5 rounded text-muted" style="background-color:rgb(255,255,255)" id="a3PB">
+                        <p><b>Bias</b></p>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <b>Liberal</b>
+                            </div>
+                            <div class="col-7">
+                                <input type="range" disabled min="-10" max="10" class="custom-range a3Range" id="a3Range">                            
+                            </div>
+                            <div class="col-sm">
+                                <b>Conservative</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                    <a id="articleLink4" target="_blank" href="http://google.com">
+                    <div id="a4container" class="shadow p-3 mb-5 bg-white rounded">
+                        <h4 id="a4Title">...</h4>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <div class="shadow p-3 mb-5 rounded text-muted" style="background-color:rgb(255,255,255)" id="a4PB">
+                        <p><b>Bias</b></p>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <b>Liberal</b>
+                            </div>
+                            <div class="col-7">
+                                <input type="range" disabled min="-10" max="10" class="custom-range a4Range" id="a4Range">                            
+                            </div>
+                            <div class="col-sm">
+                                <b>Conservative</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                    <a id="articleLink5" target="_blank" href="http://google.com">
+                    <div id="a5container" class="shadow p-3 mb-5 bg-white rounded">
+                        <h4 id="a5Title">...</h4>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <div class="shadow p-3 mb-5 rounded text-muted" style="background-color:rgb(255,255,255)" id="a5PB">
+                        <p><b>Bias</b></p>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <b>Liberal</b>
+                            </div>
+                            <div class="col-7">
+                                <input type="range" disabled min="-10" max="10" class="custom-range a5Range" id="a5Range">                            
+                            </div>
+                            <div class="col-sm">
+                                <b>Conservative</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                        <h4 class="text-center font-weight-light"> Read each article and vote on how biased you believe it is! When you're done, press 'Submit Feedback' to 
+                                complete the analysis for today.
+                        </h4>
+                        <a class="btn btn-primary disabled" href="#" role="button" id="finishButton">Submit Feedback</a>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-sm">
+                    <h4>&nbsp</h4>
+                </div>
+            </div>
+
+
+
         </div>
+
     </div>
-    <div class="container-b">
-        <div class="container-fluid align-middle">
-            <h1 class="display-3 text-center">Today's News</h1>
-            <div class="row text-center justify-content-center">
-                <div class="col-sm">
-                    <div class="shadow p-3 mb-5 bg-white rounded">Article 1</div>
-                </div>
-                <div class="col-sm">
-                    <div class="shadow p-3 mb-5 bg-white rounded">Article 2</div>
-                </div>
-                <div class="col-sm">
-                    <div class="shadow p-3 mb-5 bg-white rounded">Article 3</div>
-                </div>                                    
-            </div>
-            <div class="row text-center justify-content-center">
-                <div class="col-sm">
-                    <div class="shadow p-3 mb-5 bg-white rounded">Article 4</div>
-                </div>
-                <div class="col-sm">
-                    <div class="shadow p-3 mb-5 bg-white rounded">Article 5</div>
-                </div>          
-            </div>
-            <h4 class="text-center font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Aenean nec quam et elit luctus posuere. Nullam ac dolor in mi vestibulum tristique vitae
-                    nec velit. Nunc vestibulum commodo urna. Aenean sagittis justo vel vulputate ultricies. 
-                    Aenean et sagittis sem. Nunc quis enim quis nisi tempus molestie vitae eget urna. Morbi
-                    quis luctus urna. Proin congue facilisis velit in malesuada.
-            </h4>
+    
+    <div class="container-a" id="search">
+        <div class="align-middle justify-content-center">
+            <h1 class="display-3 text-center">Search for Past Articles:</h1>
+            <div class="input-group mb-3 ml-auto mr-auto justify-content-center"style="width:30%; padding-top: 100px; padding-bottom: 100px">
+                <input type="text" class="form-control" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2">
+            </div>  
+            <div>
+                <p class="h6 text-center">placeholder placeholder placeholder placeholder placeholder placeholder 
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
+                </p>
+            </div>  
         </div>
     </div>
 </body>
