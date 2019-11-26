@@ -12,23 +12,6 @@ function submitBias(){
     window.location.href = "analysis.html";
 }
 
-function getTimeToNext(){
-    let currTime = new Date();
-    let nextTime = new Date();
-    //alert(currTime);
-    if(currTime.getHours() >= 9) nextTime.setDate(currTime.getDate() + 1);
-    nextTime.setHours(9,0,0,0);
-    let t = nextTime - currTime;
-    let hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
-    hours = hours > 9 ? hours : "0" + hours;
-    let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-    minutes = minutes > 9 ? minutes : "0" + minutes;
-    let seconds = Math.floor((t % (1000 * 60)) / 1000); 
-    seconds = seconds > 9 ? seconds : "0" + seconds;
-    //alert(`${hours}:${minutes}:${seconds}`);
-    document.getElementById('timer').innerHTML = `New Articles in: ${hours}:${minutes}:${seconds}`;
-}
-
 function colorIt(i){
     $(`#a${i}Range`).on("input", function(){
         let sliderValue = $(`#a${i}Range`).val();
@@ -41,13 +24,26 @@ function colorIt(i){
 async function displayArticleInfo(x){
     let i = x.data;
     //should actually be private articles that i've reviewed today.
-    let biasResponse = await axios.post('http://localhost:3000/public/reviewed',{});
+    let biasResponse = await axios.get('http://localhost:3000/public/reviewed',{});
     alert(biasResponse);
 }
 
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
+}
 
 
-$(document).ready(function () {    
+$(document).ready(function () { 
+    //first thing we do is get the thing that the person searched   
+    let searchQuery = getQueryVariable('searchQuery');
     //setInterval(getTimeToNext, 1000);
     for(let i = 1; i < 6; i++){
         $(`#inlineRadio${i}`).on("click", null, i, displayArticleInfo);

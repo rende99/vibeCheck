@@ -1,118 +1,2369 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="extraStyle.css">
     <title>Analysis</title>
 </head>
+
 <body>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="analysis.js" type="module"></script>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">TBD</a>
-        
+
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" onClick="document.getElementById('news').scrollIntoView();">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" onClick="document.getElementById('search').scrollIntoView();">Search</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Today's Analysis</a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" onClick="document.getElementById('news').scrollIntoView();">Home <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onClick="document.getElementById('search').scrollIntoView();">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Today's Analysis</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right ml-auto">
                 <li class="nav-item">
-                    
+
                 </li>
             </ul>
-                
+
         </div>
     </nav>
-    <div class="container-b justify-content-center" id="news">
-        <h1 class="display-3 text-center">Today's Analysis</h1>
-        <div class="row">
-            <div class="col-sm text-center">
-                <div class="form-check form-check-inline bg-warning shadow p-2 mb-5 rounded  ">
-                    <label class="form-check-label text-center" for="inlineRadio1"><h4>Article 1</h4> 
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="a1">
-                    </label>
+    <div class="container-b justify-content-center text-center" id="news">
+        <h1 class="display-3 text-center p-4">Today's Analysis</h1>
+        <div class="accordion container" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="false" aria-controls="collapseOne">
+                            <p class="display-4">Article 1</p>
+                        </button>
+                    </h2>
                 </div>
-                <div class="form-check form-check-inline bg-warning shadow p-2 mb-5 rounded  ">
-                    <label class="form-check-label text-center" for="inlineRadio2"><h4>Article 2</h4> 
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="a2">
-                    </label>
-                </div>
-                <div class="form-check form-check-inline bg-warning shadow p-2 mb-5 rounded  ">
-                    <label class="form-check-label text-center" for="inlineRadio3"><h4>Article 3</h4> 
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="a3">
-                    </label>
-                </div>
-                <div class="form-check form-check-inline bg-warning shadow p-2 mb-5 rounded  ">
-                    <label class="form-check-label text-center" for="inlineRadio4"><h4>Article 4</h4> 
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="a4">
-                    </label>
-                </div>
-                <div class="form-check form-check-inline bg-warning shadow p-2 mb-5 rounded  ">
-                    <label class="form-check-label text-center" for="inlineRadio5"><h4>Article 5</h4> 
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="a5">
-                    </label>
-    
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <p class="display-4">Results for Article:</p>
-        </div>
-        <div class="container">   
-            <div class="row text-center justify-content-center">
-                <div class="col-sm">
-                    <a id="articleLink1" target="_blank" href="http://google.com">
-                    <div id="a1container " class="shadow p-3 mb-5 bg-white rounded">
-                        <h4 id="a1Title">...</h4>
-                    </div>
-                    </a>
-                </div>
-                <div class="col-sm">
-                    <div class="shadow p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
-                        <p><b id="caption1">Bias</b></p>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
                         <div class="row text-center justify-content-center">
                             <div class="col-sm">
-                                <b>Liberal</b>
-                            </div>
-                            <div class="col-7">
-                                <input type="range" min="-10" max="10" class="custom-range" id="a1AnalysisRange">                            
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
+                                        <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAge0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">0-17 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAge1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">18-24 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAge2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">25-39 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAge3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">40-59 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAge4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">60+ Years</b></p>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-sm">
-                                <b>Conservative</b>
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
+                                        <p><b id="captionTop">Perceived Bias by Gender</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeGender0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Male</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeGender1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Female</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeGender2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Other</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
+                                        <p><b id="captionTop">Perceived Bias by Location</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeNorthEast">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Northeastern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeSouth">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Southern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeMidWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Midwestern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Western USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAbroad">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Abroad</b></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
+                                        <p><b id="captionTop">Perceived Bias by Education</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeEducation0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">No High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeEducation1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeEducation3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some University</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeEducation4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Associate's/Bachelor's Degree</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeAgeEducation5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Master's/Doctorate</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
+                                        <p><b id="captionTop">Perceived Bias by Race/Ethnicity</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeRace0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Black/African American</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeRace1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">American Indian / Alaska Native</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeRace2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Asian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeRace3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hawaiian/Other Pacific Islander</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeRace4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">White</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeRace5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hispanic/Latinx</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
+                                        <p><b id="captionTop">Perceived Bias by Party Affiliation</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeParty0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Alt-Right</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeParty1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Conservative</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeParty2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Moderate</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeParty3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Libertarian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeParty4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Liberal</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRangeParty5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Socialist</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <p class="display-4">Article 2</p>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
+                                        <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAge0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">0-17 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAge1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">18-24 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAge2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">25-39 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAge3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">40-59 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAge4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">60+ Years</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
+                                        <p><b id="captionTop">Perceived Bias by Gender</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeGender0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Male</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeGender1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Female</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeGender2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Other</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
+                                        <p><b id="captionTop">Perceived Bias by Location</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeNorthEast">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Northeastern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeSouth">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Southern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeMidWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Midwestern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Western USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAbroad">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Abroad</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
+                                        <p><b id="captionTop">Perceived Bias by Education</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeEducation0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">No High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeEducation1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeEducation3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some University</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeEducation4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Associate's/Bachelor's Degree</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeAgeEducation5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Master's/Doctorate</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
+                                        <p><b id="captionTop">Perceived Bias by Race/Ethnicity</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeRace0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Black/African American</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeRace1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">American Indian / Alaska Native</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeRace2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Asian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeRace3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hawaiian/Other Pacific Islander</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeRace4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">White</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeRace5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hispanic/Latinx</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
+                                        <p><b id="captionTop">Perceived Bias by Party Affiliation</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeParty0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Alt-Right</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeParty1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Conservative</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeParty2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Moderate</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeParty3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Libertarian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeParty4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Liberal</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRangeParty5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Socialist</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <p class="display-4">Article 3</p>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
+                                        <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAge0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">0-17 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAge1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">18-24 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAge2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">25-39 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAge3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">40-59 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAge4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">60+ Years</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
+                                        <p><b id="captionTop">Perceived Bias by Gender</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeGender0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Male</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeGender1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Female</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeGender2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Other</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
+                                        <p><b id="captionTop">Perceived Bias by Location</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeNorthEast">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Northeastern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeSouth">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Southern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeMidWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Midwestern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Western USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAbroad">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Abroad</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
+                                        <p><b id="captionTop">Perceived Bias by Education</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeEducation0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">No High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeEducation1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeEducation3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some University</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeEducation4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Associate's/Bachelor's Degree</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeAgeEducation5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Master's/Doctorate</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
+                                        <p><b id="captionTop">Perceived Bias by Race/Ethnicity</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeRace0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Black/African American</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeRace1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">American Indian / Alaska Native</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeRace2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Asian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeRace3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hawaiian/Other Pacific Islander</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeRace4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">White</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeRace5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hispanic/Latinx</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
+                                        <p><b id="captionTop">Perceived Bias by Party Affiliation</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeParty0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Alt-Right</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeParty1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Conservative</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeParty2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Moderate</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeParty3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Libertarian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeParty4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Liberal</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRangeParty5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Socialist</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour"
+                            aria-expanded="false" aria-controls="collapseFour">
+                            <p class="display-4">Article 4</p>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
+                                        <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAge0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">0-17 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAge1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">18-24 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAge2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">25-39 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAge3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">40-59 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAge4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">60+ Years</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
+                                        <p><b id="captionTop">Perceived Bias by Gender</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeGender0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Male</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeGender1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Female</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeGender2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Other</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
+                                        <p><b id="captionTop">Perceived Bias by Location</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeNorthEast">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Northeastern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeSouth">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Southern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeMidWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Midwestern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Western USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAbroad">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Abroad</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
+                                        <p><b id="captionTop">Perceived Bias by Education</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeEducation0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">No High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeEducation1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeEducation3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some University</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeEducation4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Associate's/Bachelor's Degree</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeAgeEducation5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Master's/Doctorate</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
+                                        <p><b id="captionTop">Perceived Bias by Race/Ethnicity</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeRace0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Black/African American</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeRace1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">American Indian / Alaska Native</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeRace2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Asian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeRace3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hawaiian/Other Pacific Islander</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeRace4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">White</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeRace5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hispanic/Latinx</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
+                                        <p><b id="captionTop">Perceived Bias by Party Affiliation</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeParty0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Alt-Right</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeParty1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Conservative</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeParty2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Moderate</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeParty3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Libertarian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeParty4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Liberal</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRangeParty5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Socialist</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFive"
+                            aria-expanded="false" aria-controls="collapseFive">
+                            <p class="display-4">Article 5</p>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
+                                        <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAge0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">0-17 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAge1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">18-24 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAge2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">25-39 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAge3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">40-59 Years</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAge4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">60+ Years</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
+                                        <p><b id="captionTop">Perceived Bias by Gender</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeGender0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Male</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeGender1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Female</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeGender2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Other</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
+                                        <p><b id="captionTop">Perceived Bias by Location</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeNorthEast">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Northeastern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeSouth">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Southern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeMidWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Midwestern USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeWest">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Western USA</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAbroad">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Abroad</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center justify-content-center">
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
+                                        <p><b id="captionTop">Perceived Bias by Education</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeEducation0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">No High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeEducation1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some High School</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeEducation3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Some University</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeEducation4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Associate's/Bachelor's Degree</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeAgeEducation5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Master's/Doctorate</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
+                                        <p><b id="captionTop">Perceived Bias by Race/Ethnicity</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeRace0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Black/African American</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeRace1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">American Indian / Alaska Native</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeRace2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Asian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeRace3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hawaiian/Other Pacific Islander</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeRace4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">White</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeRace5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Hispanic/Latinx</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="card shadow p-3 mb-5 rounded ">
+                                    <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
+                                        <p><b id="captionTop">Perceived Bias by Party Affiliation</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeParty0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Alt-Right</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeParty1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Conservative</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeParty2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Moderate</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeParty3">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Libertarian</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeParty4">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Liberal</b></p>
+                                        <div class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRangeParty5">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                        </div>
+                                        <p><b id="captionBottom">Socialist</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
         </div>
 
     </div>
 </body>
+
 </html>

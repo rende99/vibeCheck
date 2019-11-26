@@ -4,6 +4,9 @@
 
 async function getArticles(){
     //use NEWSAPI to get news articles
+    // get a user attribute here to see if they've already done articles for today. If not, do what's already below.
+    // If they have already done articles, then show update the ranges with what they declared the bias was, and the article titles.
+
     let newsResponse = await axios({
         url: "https://newsapi.org/v2/top-headlines?country=us&language=en&apiKey=1f5ab45295f640fe8a9b397a85acfde5",
     });
@@ -25,28 +28,132 @@ async function getArticles(){
     
 }
 
-function submitBias(){
-    alert("You have read all the articles!");
+async function submitBias(){
     //make post request with the articles that we have read today
+    
 
+    /********************************************************************************** 
+        should be PUTTING to USER too, overwriting the old things user reviewed yesterday!
+        if PUTTING doesn't work, DELETE then POST.
+
+        in public: Every single review of every article, with each score attached. Will allow
+        unlogged-in users to search for article, and see bias.
+        in private: Every single review of every article, with score and demographic info attached. Will allow
+        logged-in users to see more in-depth data on each article
+        user: should have demographic information of the user, as well as the articles they have reviewed today.
+    ***********************************************************************************/
+    alert(document.cookie);
+    /*
+    let deleteResponse = await axios.delete('http://localhost:3000/user/articles',{
+        headers: {
+            Authorization: document.cookie
+        }
+    });
+    
+    let userResponse = await axios.post('http://localhost:3000/user/articles', {
+        headers: {
+            Authorization: document.cookie
+        },
+        data: {
+            "articles": [
+                {
+                    "title": document.getElementById(`a1Title`).innerHTML,
+                    "url": document.getElementById(`articleLink1`).href,
+                    "score": $(`#a1Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a2Title`).innerHTML,
+                    "url": document.getElementById(`articleLink2`).href,
+                    "score": $(`#a2Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a3Title`).innerHTML,
+                    "url": document.getElementById(`articleLink3`).href,
+                    "score": $(`#a3Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a4Title`).innerHTML,
+                    "url": document.getElementById(`articleLink4`).href,
+                    "score": $(`#a4Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a5Title`).innerHTML,
+                    "url": document.getElementById(`articleLink5`).href,
+                    "score": $(`#a5Range`).val()
+                }  
+            ]
+        }
+    });
+    alert(JSON.stringify(userResponse.data));
+    
+    
+    let todayArticles = await axios.post('http://localhost:3000/private/all',{
+        headers: {
+            Authorization: document.cookie
+        },
+        data: {
+            "articles": [
+                {
+                    "title": document.getElementById(`a1Title`).innerHTML,
+                    "url": document.getElementById(`articleLink1`).href,
+                    "score": $(`#a1Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a2Title`).innerHTML,
+                    "url": document.getElementById(`articleLink2`).href,
+                    "score": $(`#a2Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a3Title`).innerHTML,
+                    "url": document.getElementById(`articleLink3`).href,
+                    "score": $(`#a3Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a4Title`).innerHTML,
+                    "url": document.getElementById(`articleLink4`).href,
+                    "score": $(`#a4Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a5Title`).innerHTML,
+                    "url": document.getElementById(`articleLink5`).href,
+                    "score": $(`#a5Range`).val()
+                }        
+            ]
+        },
+    });
+    */
     let biasResponse = await axios.post('http://localhost:3000/public/reviewed',
     {
         data: {
-            "titles": {
-                't1': document.getElementById(`a1Title`).innerHTML,
-                't2': document.getElementById(`a2Title`).innerHTML,
-                't3': document.getElementById(`a3Title`).innerHTML,
-                't4': document.getElementById(`a4Title`).innerHTML,
-                't5': document.getElementById(`a5Title`).innerHTML,
-            },
-            "URLs": {
-                'u1':  document.getElementById(`articleLink1`).attr("href"),
-                'u2':  document.getElementById(`articleLink2`).attr("href"),
-                'u3':  document.getElementById(`articleLink3`).attr("href"),
-                'u4':  document.getElementById(`articleLink4`).attr("href"),
-                'u5':  document.getElementById(`articleLink5`).attr("href"),
-            }
+            "articles": [
+                {
+                    "title": document.getElementById(`a1Title`).innerHTML,
+                    "url": document.getElementById(`articleLink1`).href,
+                    "score": $(`#a1Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a2Title`).innerHTML,
+                    "url": document.getElementById(`articleLink2`).href,
+                    "score": $(`#a2Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a3Title`).innerHTML,
+                    "url": document.getElementById(`articleLink3`).href,
+                    "score": $(`#a3Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a4Title`).innerHTML,
+                    "url": document.getElementById(`articleLink4`).href,
+                    "score": $(`#a4Range`).val()
+                },
+                {
+                    "title": document.getElementById(`a5Title`).innerHTML,
+                    "url": document.getElementById(`articleLink5`).href,
+                    "score": $(`#a5Range`).val()
+                }        
+            ]
         },
+        "type": "merge"
     });
 
     window.location.href = "analysis.html";
@@ -75,6 +182,14 @@ function getTimeToNext(){
 
 $(document).ready(function () {
     getArticles();
+    $("#searchBar").keyup(function(event) {
+        //DEBOUNCING AND ALL THAT SHOULD BE GOING ON AROUND HERE!!! THIS IS WHERE THE USER IS SEARCHING FOR SOMETHING!
+        if (event.keyCode === 13) {
+            let searchQuery = $('#searchBar').val();
+            window.location.href = `singleArticleAnalysis.html?searchQuery=${searchQuery}`;
+
+        }
+    });
     let a1,a2,a3,a4,a5;
     $('#a1container').on("click", function(){
         $('#a1PB').removeClass("text-muted");

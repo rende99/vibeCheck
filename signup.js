@@ -52,33 +52,56 @@ export default function pageLoaded() {
             name: userName,
             pass: pass,
         });
-        let token = loginResponse.data.jwt;
-        document.cookie = `Bearer ${token}`;
-        event.preventDefault();
+        //alert(loginResponse.data.jwt);
+        document.cookie = loginResponse.data.jwt;
+        //document.cookie = `Bearer ${token}`;
         //debugger;
 
         //need to get 'Bearer' auth jwt token to send as part of this request.
+        let status = await axios.get(`http://localhost:3000/account/status`,{
+            headers: {
+                Authorization: `Bearer ${document.cookie}`
+            }
+        }).then(response => {
+            alert("response: " + JSON.stringify(response.data));
+            axios.post(`http://localhost:3000/user/${response.data.user.name}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${document.cookie}`
+                },
+                data: {
+                    'userGender': userGender,
+                    'userAge': userAge,
+                    'userLocation': userLocation,
+                    'userEducation': userEducation,
+                    'userRace': userRace,
+                    'userAffiliation': userAffiliation
+                } 
+            });
+        });
+        
         /*
-        let response = await axios.post("http://localhost:3000/user/demo",
+        let response = await axios.post(`http://localhost:3000/user/${userName}`,
         {
             headers: {
-                'Authorization': document.cookie,
+                'Authorization': `Bearer ${document.cookie}`
             },
             data: {
-                userGender: userGender,
-                userAge: userAge,
-                userLocation: userLocation,
-                userEducation: userEducation,
-                userRace: userRace,
-                userAffiliation: userAffiliation
-            },
+                'userGender': userGender,
+                'userAge': userAge,
+                'userLocation': userLocation,
+                'userEducation': userEducation,
+                'userRace': userRace,
+                'userAffiliation': userAffiliation
+            }
         });
+        alert(JSON.stringify(response.data));
         */
+        
 
         window.location.href = "landing.html";
 
 
-        event.preventDefault();
         //debugger;
 
     });
