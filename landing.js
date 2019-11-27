@@ -30,7 +30,11 @@ async function getArticles(){
 
 async function submitBias(){
     //make post request with the articles that we have read today
-    
+    const specialHeader = {
+        headers: {
+            Authorization: `Bearer ${document.cookie}`
+        }
+    };
 
     /********************************************************************************** 
         should be PUTTING to USER too, overwriting the old things user reviewed yesterday!
@@ -42,18 +46,19 @@ async function submitBias(){
         logged-in users to see more in-depth data on each article
         user: should have demographic information of the user, as well as the articles they have reviewed today.
     ***********************************************************************************/
-    alert(document.cookie);
+    //first, delete the articles from the day before (if any)
     /*
-    let deleteResponse = await axios.delete('http://localhost:3000/user/articles',{
-        headers: {
-            Authorization: document.cookie
-        }
-    });
-    
-    let userResponse = await axios.post('http://localhost:3000/user/articles', {
-        headers: {
-            Authorization: document.cookie
-        },
+    try {
+        let deleteResponse = await axios.delete('http://localhost:3000/user/articles',
+            specialHeader
+        );
+    } catch (error){
+
+    }
+    */
+    //now, add the new articles from today:
+    let addArticlesToday = await axios.post('http://localhost:3000/user/articles',
+    {
         data: {
             "articles": [
                 {
@@ -83,46 +88,12 @@ async function submitBias(){
                 }  
             ]
         }
-    });
-    alert(JSON.stringify(userResponse.data));
+    },
+        specialHeader
+    );
     
-    
-    let todayArticles = await axios.post('http://localhost:3000/private/all',{
-        headers: {
-            Authorization: document.cookie
-        },
-        data: {
-            "articles": [
-                {
-                    "title": document.getElementById(`a1Title`).innerHTML,
-                    "url": document.getElementById(`articleLink1`).href,
-                    "score": $(`#a1Range`).val()
-                },
-                {
-                    "title": document.getElementById(`a2Title`).innerHTML,
-                    "url": document.getElementById(`articleLink2`).href,
-                    "score": $(`#a2Range`).val()
-                },
-                {
-                    "title": document.getElementById(`a3Title`).innerHTML,
-                    "url": document.getElementById(`articleLink3`).href,
-                    "score": $(`#a3Range`).val()
-                },
-                {
-                    "title": document.getElementById(`a4Title`).innerHTML,
-                    "url": document.getElementById(`articleLink4`).href,
-                    "score": $(`#a4Range`).val()
-                },
-                {
-                    "title": document.getElementById(`a5Title`).innerHTML,
-                    "url": document.getElementById(`articleLink5`).href,
-                    "score": $(`#a5Range`).val()
-                }        
-            ]
-        },
-    });
-    */
-    let biasResponse = await axios.post('http://localhost:3000/public/reviewed',
+   
+    let biasPublicResponse = await axios.post('http://localhost:3000/public/reviewed',
     {
         data: {
             "articles": [
@@ -155,6 +126,53 @@ async function submitBias(){
         },
         "type": "merge"
     });
+    //get demographic information for the private post.
+    //
+    //
+    const demoJSONInfo = await axios.get(`http://localhost:3000/user/info`,
+        specialHeader
+    );
+
+    let biasPrivateResponse = await axios.post('http://localhost:3000/private/reviewed',
+    {
+        data: {
+            "articles": [
+                {
+                    "title": document.getElementById(`a1Title`).innerHTML,
+                    "url": document.getElementById(`articleLink1`).href,
+                    "score": $(`#a1Range`).val(),
+                    "info": demoJSONInfo.data.result
+                },
+                {
+                    "title": document.getElementById(`a2Title`).innerHTML,
+                    "url": document.getElementById(`articleLink2`).href,
+                    "score": $(`#a2Range`).val(),
+                    "info": demoJSONInfo.data.result
+                },
+                {
+                    "title": document.getElementById(`a3Title`).innerHTML,
+                    "url": document.getElementById(`articleLink3`).href,
+                    "score": $(`#a3Range`).val(),
+                    "info": demoJSONInfo.data.result
+                },
+                {
+                    "title": document.getElementById(`a4Title`).innerHTML,
+                    "url": document.getElementById(`articleLink4`).href,
+                    "score": $(`#a4Range`).val(),
+                    "info": demoJSONInfo.data.result
+                },
+                {
+                    "title": document.getElementById(`a5Title`).innerHTML,
+                    "url": document.getElementById(`articleLink5`).href,
+                    "score": $(`#a5Range`).val(),
+                    "info": demoJSONInfo.data.result
+                }        
+            ]
+        },
+        "type": "merge",
+    },
+        specialHeader
+    );
 
     window.location.href = "analysis.html";
 }

@@ -21,6 +21,7 @@ export default function pageLoaded() {
         event.preventDefault();
         
         userName = $('#userEmail').val();
+        userName = userName.toLowerCase();
         pass = $('#userPassword').val();
 
 
@@ -56,36 +57,16 @@ export default function pageLoaded() {
         document.cookie = loginResponse.data.jwt;
         //document.cookie = `Bearer ${token}`;
         //debugger;
-
-        //need to get 'Bearer' auth jwt token to send as part of this request.
-        let status = await axios.get(`http://localhost:3000/account/status`,{
+        const specialHeader = {
             headers: {
                 Authorization: `Bearer ${document.cookie}`
             }
-        }).then(response => {
-            alert("response: " + JSON.stringify(response.data));
-            axios.post(`http://localhost:3000/user/${response.data.user.name}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${document.cookie}`
-                },
-                data: {
-                    'userGender': userGender,
-                    'userAge': userAge,
-                    'userLocation': userLocation,
-                    'userEducation': userEducation,
-                    'userRace': userRace,
-                    'userAffiliation': userAffiliation
-                } 
-            });
-        });
-        
-        /*
-        let response = await axios.post(`http://localhost:3000/user/${userName}`,
+        };
+
+
+        //need to get 'Bearer' auth jwt token to send as part of this request.
+        const userPost = await axios.post(`http://localhost:3000/user/info`,
         {
-            headers: {
-                'Authorization': `Bearer ${document.cookie}`
-            },
             data: {
                 'userGender': userGender,
                 'userAge': userAge,
@@ -94,8 +75,19 @@ export default function pageLoaded() {
                 'userRace': userRace,
                 'userAffiliation': userAffiliation
             }
-        });
-        alert(JSON.stringify(response.data));
+        },
+            specialHeader
+        );
+        //alert(JSON.stringify(userPost.data));
+
+        
+        const userResponse = await axios.get(`http://localhost:3000/user/info`,
+            specialHeader
+        );
+        //alert(JSON.stringify(userResponse.data));
+        
+
+        /*
         */
         
 
