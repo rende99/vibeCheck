@@ -5,11 +5,11 @@ async function getRecentArticles(){
     let recentResponse = await axios.get("http://localhost:3000/public/reviewed");
     //Get the final 5 article names. put that in each title. Then search the data for each instance of the article name, and 
     //get the average score. then put in a range with that score/color.
-    let length = recentResponse.data.result.articles.length;
+    let length = recentResponse.data.result[recentResponse.data.result.length-1].articles.length;
     for(let i = 1; i < 6; i++){
         //get title of each article
-        let title = recentResponse.data.result.articles[length - i].title;
-        let score = recentResponse.data.result.articles[length - i].score;
+        let title = recentResponse.data.result[recentResponse.data.result.length-1].articles[length - i].title;
+        let score = recentResponse.data.result[recentResponse.data.result.length-1].articles[length - i].score;
         document.getElementById(`a${i}`).innerHTML = title;
         $(`#a${i}AnalysisRange`).val(score);
         $(`#a${i}PB`).css("background", `rgb(${255+(score*15)}, ${255-Math.abs(score*15)}, ${255-(score*15)})`);

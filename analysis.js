@@ -152,8 +152,8 @@ async function getArticleInfo(){
                             tsASI += parseInt(privateData.result[k].articles[j].score, 10);
                             break;
                         case "NHW":
-                            nrNHW++;
-                            tsNHW += parseInt(privateData.result[k].articles[j].score, 10);
+                            nrHAW++;
+                            tsHAW += parseInt(privateData.result[k].articles[j].score, 10);
                             break;
                         case "WHT":
                             nrWHI++;
