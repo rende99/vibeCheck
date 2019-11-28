@@ -24,20 +24,22 @@
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="signup.js" type="module"></script>
 
-    <div class="container" id="firstContainer" style="width: 40%">
-        <h1 class="display-3 text-center">Signing up...</h1>
+    <div class="container" id="firstContainer" style="width: 50%">
+        <small><a href=index.html>home</a></small>
+        <h1 class="text-center h1">Create A New Account</h1>
         <form>
+            <div class="text-center">
+                        <small>already have an account? <a href="login.html">login here</a></small>
+            </div>
             <div class="form-group">
                 <label for="userEmail">Email address</label>
                 <input type="email" class="form-control" id="userEmail" placeholder="Enter Email">
             </div>
             <div class="form-group">
                 <label for="userPassword">Password</label>
-                <input type="password" class="form-control" id="userPassword" placeholder="Password">
+                <input type="password" class="form-control" id="userPassword" placeholder="Create Password">
             </div>
-            <div>
-                <small>already have an account? <a href="login.html">Login here</a></small>
-            </div>
+            
         </form>
     </div>
     <div class="container" id="hid2" style="width: 40%; padding: 40px;" onsubmit="return false">
