@@ -44,6 +44,7 @@ async function getArticles(){
             || newsResponse.data.articles[i].url.includes("dailymail.c") || newsResponse.data.articles[i].url.includes("theguardian.com"))
             && !newsResponse.data.articles[i].title.includes("Washington Post")){
                 newsResponse.data.articles[i].title.replace(`"`, ``);
+                newsResponse.data.articles[i].title.replace(`'`, ``);
                 document.getElementById(`a${numFound+1}Title`).innerHTML = newsResponse.data.articles[i].title;
                 document.getElementById(`articleLink${numFound+1}`).setAttribute("href", newsResponse.data.articles[i].url);
                 numFound++;
