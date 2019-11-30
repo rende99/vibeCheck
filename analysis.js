@@ -21,9 +21,6 @@ async function getArticleInfo(){
     };
 
     let privateData = await axios.get("http://localhost:3000/private/reviewed" , specialHeader);
-    for(let i = 0; i < privateData.data.result.length; i++){
-        
-    }
     //privateData = privateData.data.result[1];
     privateData = privateData.data;
     let articlesIReviewed = await axios.get('http://localhost:3000/user/articles', specialHeader);
@@ -265,4 +262,5 @@ function colorIt(i){
 $(document).ready(function () {    
     //setInterval(getTimeToNext, 1000);
     getArticleInfo();
+    
 });

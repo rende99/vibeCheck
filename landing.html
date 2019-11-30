@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="extraStyle.css">
     <title>Home</title>
@@ -19,32 +20,37 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+
+
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="landing.js" type="module"></script>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">TBD</a>
-        
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" onClick="document.getElementById('news').scrollIntoView();">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item" id="liSearch">
-                <a class="nav-link" onClick="document.getElementById('search').scrollIntoView();">Search</a>
-            </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right ml-auto">
-                <li class="nav-item">
+    <div class="container-b">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">TBD</a>
+            
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul id="lSide" class="navbar-nav mr-auto">
+                    <li id="hAfter" class="nav-item active">
+                    </li>
+                    <li class="nav-item" id="liSearch">
+                        <input id="searchBar" list="searchAuto" style="width:500px;" type="text" class="form-control" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2">
+                        <datalist id="searchAuto">  
+                                        
+                        </datalist>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right ml-auto">
                     
-                </li>
-            </ul>
-                
-        </div>
-    </nav>
+                </ul>
+                    
+            </div>
+        </nav>
+    </div>
+    
 
     <div id="description" class="container-b">
     </div>
@@ -205,26 +211,6 @@
 
         </div>
 
-    </div>
-    
-    <div class="container-b" id="search" style="padding-top: 100px">
-        <div class="align-middle justify-content-center">
-            <h1 class="h1 text-center">Search for Past Articles:</h1>
-            <div class="input-group mb-3 ml-auto mr-auto justify-content-center"style="width:30%; padding-top: px; padding-bottom: 100px">
-                <input id="searchBar" type="text" class="form-control" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2">
-            </div>  
-            <div>
-                <p class="h6 text-center">placeholder placeholder placeholder placeholder placeholder placeholder 
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                        placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                </p>
-            </div>  
-        </div>
     </div>
 </body>
 </html>

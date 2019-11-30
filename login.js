@@ -10,6 +10,7 @@ export default function pageLoaded(){
             name: userName,
             pass: pass,
         });
+        document.cookie = loginResponse.data.jwt;
 
         window.location.href = "landing.html";
 

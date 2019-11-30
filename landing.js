@@ -15,16 +15,15 @@ async function getArticles(){
     let d = new Date();
     d = d.getDate();
     var dateJSONInfo = 0;
-    let dateJSONInfo2 = await axios.get(`http://localhost:3000/user/articles`,
-    specialHeader
-    ).then(response =>{
-        dateJSONInfo = response.data.result.userDate;
+    try{
+        let dateJSONInfo2 = await axios.get(`http://localhost:3000/user/articles`,
+        specialHeader
+        );  
+        dateJSONInfo = dateJSONInfo2.data.result.userDate;
 
-    }).catch(error =>{
+    }catch{
         dateJSONInfo = -1;
-
-    });
-    //alert(dateJSONInfo);
+    }
 
     
     
@@ -44,6 +43,7 @@ async function getArticles(){
             || newsResponse.data.articles[i].url.includes("foxnews.com")  || newsResponse.data.articles[i].url.includes("nbcnews.com")
             || newsResponse.data.articles[i].url.includes("dailymail.c") || newsResponse.data.articles[i].url.includes("theguardian.com"))
             && !newsResponse.data.articles[i].title.includes("Washington Post")){
+                newsResponse.data.articles[i].title.replace(`"`, ``);
                 document.getElementById(`a${numFound+1}Title`).innerHTML = newsResponse.data.articles[i].title;
                 document.getElementById(`articleLink${numFound+1}`).setAttribute("href", newsResponse.data.articles[i].url);
                 numFound++;
@@ -51,43 +51,9 @@ async function getArticles(){
         }
 
         //note: date is 'd' here...
-        let addArticlesToday = await axios.post('http://localhost:3000/user/articles',
-        {
-            data: {
-                "articles": [
-                    {
-                        "title": document.getElementById(`a1Title`).innerHTML,
-                        "url": document.getElementById(`articleLink1`).href,
-                        "score": $(`#a1Range`).val()
-                    },
-                    {
-                        "title": document.getElementById(`a2Title`).innerHTML,
-                        "url": document.getElementById(`articleLink2`).href,
-                        "score": $(`#a2Range`).val()
-                    },
-                    {
-                        "title": document.getElementById(`a3Title`).innerHTML,
-                        "url": document.getElementById(`articleLink3`).href,
-                        "score": $(`#a3Range`).val()
-                    },
-                    {
-                        "title": document.getElementById(`a4Title`).innerHTML,
-                        "url": document.getElementById(`articleLink4`).href,
-                        "score": $(`#a4Range`).val()
-                    },
-                    {
-                        "title": document.getElementById(`a5Title`).innerHTML,
-                        "url": document.getElementById(`articleLink5`).href,
-                        "score": $(`#a5Range`).val()
-                    }  
-                ],
-                "userDate": d
-            }
-        },
-            specialHeader
-        );
 
     }else{
+        //alert(dateJSONInfo);
         //was already given articles. Get them, and do not allow them to make changes to the bias they already gave.
         let existingArticles = await axios.get(`http://localhost:3000/user/articles`,
             specialHeader
@@ -104,7 +70,7 @@ async function getArticles(){
         $(`<li class="nav-item" id="liAnalysis">
                 <a class="nav-link" href="analysis.html">Analysis</a>
             </li>`
-        ).insertAfter('#liSearch');
+        ).insertAfter('#hAfter');
         document.getElementById('instructions').innerHTML = "You've already completed your analysis for today. Come back tomorrow!";
         document.getElementById('finishButton').classList.add("invisible");
     }
@@ -279,21 +245,58 @@ function getTimeToNext(){
     document.getElementById('timer').innerHTML = `New Articles in: ${hours}:${minutes}:${seconds}`;
 }
 
-
-
-
-
-$(document).ready(function () {
-    getArticles();
-   
-    $("#searchBar").keyup(function(event) {
-        //DEBOUNCING AND ALL THAT SHOULD BE GOING ON AROUND HERE!!! THIS IS WHERE THE USER IS SEARCHING FOR SOMETHING!
-        if (event.keyCode === 13) {
-            let searchQuery = $('#searchBar').val();
-            window.location.href = `singleArticleAnalysis.html?searchQuery=${searchQuery}`;
-
+function searchHandle(arr){
+    //if(searchQuery)return;
+    //firing each time the search bar is TYPED in.
+    //get list of all titles of all articles
+    let searchQuery = $('#searchBar').val();
+    //alert(searchQuery);
+    let clrID = setTimeout(()=>{
+        //remove datalist, if existing
+        let possibleTitles = [];
+        for(let i = 0; i < arr.length; i++){
+            if((arr[i].toLowerCase()).includes(searchQuery.toLowerCase())){
+                possibleTitles.push(arr[i]);
+            }
         }
-    });
+        //alert(possibleTitles)
+        for(let i = 0; i < possibleTitles.length; i++){
+            //see if it already exists in the list.
+            $('option').remove();
+            //$(`#searchAuto`).(`<option value=\"${possibleTitles[i]}\"></option>`)
+        }
+        for(let i = 0; i < possibleTitles.length; i++){
+            $(`#searchAuto`).append(`<option value='${possibleTitles[i]}'></option>`)
+        }
+        //alert(possibleTitles);
+        //add datalist
+
+        
+    }, 200);
+    //DEBOUNCING AND ALL THAT SHOULD BE GOING ON AROUND HERE!!! THIS IS WHERE THE USER IS SEARCHING FOR SOMETHING!
+    if (event.keyCode === 13) {
+        window.location.href = `singleArticleAnalysis.html?searchQuery=${searchQuery}`;
+    }
+    //if click away, also clear the interval, also reset:
+}
+
+
+$(document).ready(async function () {
+    getArticles();
+    let pubResponse = await axios.get("http://localhost:3000/public/reviewed");
+    pubResponse = pubResponse.data;
+    //alert(JSON.stringify(pubResponse));
+    let allArticleTitles = [];
+    for(let k = 0; k < pubResponse.result.length; k++){
+        for(let j = 0; j < pubResponse.result[k].articles.length; j++){
+            allArticleTitles.push(pubResponse.result[k].articles[j].title);
+            //alert(pubResponse.result[k].articles[j].title);
+        }
+    }
+    let uniqueArticleTitles = [...new Set (allArticleTitles)];
+    //Article title array is filled. Add the event listener now:
+    $("#searchBar").keyup(function(){searchHandle(uniqueArticleTitles)});
+
     let a1,a2,a3,a4,a5;
     $('#a1container').on("click", function(){
         if(document.getElementById('articleLink1').hasAttribute("href")){
