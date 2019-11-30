@@ -22,8 +22,15 @@
     <script src="login.js" type="module"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
+    <div class="p-3">
+            <a href=index.html>home</a>
+    </div>
+
     <div class="container" style="width: 40%">
-        <h1 class="display-3 text-center">Logging in...</h1>
+        <h1 class="h1 text-center">Log In</h1>
+        <div class="text-center">
+                <small>Need an account? <a href="signup.html">Sign up here</a></small>
+        </div>
         <form>
             <div class="form-group">
                 <label for="userEmail">Email address</label>
@@ -33,9 +40,7 @@
                 <label for="userPassword">Password</label>
                 <input type="password" class="form-control" id="userPassword" placeholder="Password">
             </div>
-            <div>
-                <small>Need an account? <a href="signup.html">Sign up here</a></small>
-            </div>
+           
             <a class="btn btn-primary" href="#" role="button" id="loginButton">Log in</a>
         </form>
     </div>

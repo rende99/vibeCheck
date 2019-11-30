@@ -18,3 +18,7 @@ classic elts: body{}
 .custom-range::-webkit-slider-thumb {
     background: rgb(77, 77, 77);
 }
+
+#underline:hover {
+    text-decoration: underline;
+}

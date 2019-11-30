@@ -23,39 +23,72 @@
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="index.js" type="module"></script>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="index.js">TBD</a>
+        <a class="navbar-brand" href="index.html"></a>
         
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
             </li>
+            <!--
             <li class="nav-item">
                 <a class="nav-link" onClick="document.getElementById('news').scrollIntoView();">Current Articles</a>
             </li>
-            <li class="nav-item" id="liSearch">
-                <input id="searchBar" list="searchAuto" autocomplete="off" style="width:500px;" type="text" class="form-control" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2">
-                <datalist id="searchAuto">  
-                                
-                </datalist>
-            </li>
+            -->
+            
             </ul>
             <ul class="nav navbar-nav navbar-right ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="btn" id="underline" href="login.html">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-light" href="signup.html" role="button">Sign up</a>
+                    <a class="btn" id="underline" href="signup.html" role="button">Sign up</a>
                 </li>
             </ul>
                 
         </div>
     </nav>
-    <div class="container-a container-fluid">
-        <h1 class="display-3 text-center">Welcome to a better way to stay informed</h1>
+
+    <div class="container container-fluid">
+        
+            <h1 class="h1 text-center">Welcome to TBD.</h1>
+
+            <div class="container container-fluid">
+            <div class="justify-content-center text-center">
+                <input id="searchBar" list="searchAuto" autocomplete="off" style="width:500px;" type="text" class="form-control justify-content-center mx-lg-auto" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2" style="vertical-align: middle">
+                <datalist id="searchAuto">                    
+                </datalist>
+            </div>
+            </div>
+
+            <div>
+                <div class="container  width: 300px">
+                        <div class="row">
+                                <div class="col">
+                                  <img src="img/newsbiasimage.png" width="500" height="500">
+                                </div>
+                                <div class="col">
+                                    <div class="row p-4"></div>
+                                    <div class="row">Reading the daily news can be confusing.</div>
+                                    <div class="row p-3"></div>
+                                    <div class="row">We know certain media outlets can have inherent 
+                                    bias, and it becomes difficult to know who is influencing what.</div>
+                                    <div class="row p-3"></div>
+                                    <div class="row">That's where we come in.</div>
+                                    <div class="row p-3"></div>
+                                    <div class="row">We present our users with the day's top articles, and let
+                                    them decide whether the bias swings left or right, giving future 
+                                    readers a better idea of what they're seeing. </div>
+                                </div>
+                                </div>
+                    </div>
+            </div>
+            
+        <!--
+        <h1 class="h1 text-center">Welcome to a better way to stay informed</h1>
         <div class="row justify-content-center">
             <img src="img/20160930_demsrepubs_DonkeyHotey_0.jpg" class="img-fluid initImage" alt="Responsive image">
         </div>
@@ -65,10 +98,12 @@
                 Aenean et sagittis sem. Nunc quis enim quis nisi tempus molestie vitae eget urna. Morbi
                 quis luctus urna. Proin congue facilisis velit in malesuada.
         </h4>
+        -->
     </div>
-    <div class="container-b container-fluid" id="news">
+
+    <div class="container container-fluid" id="news">
         <div class="container-fluid align-middle">
-            <h1 class="display-3 text-center">Recently Reviewed:</h1>
+            <h1 class="h1 text-center">Recently Reviewed:</h1>
             <div class="row text-center justify-content-center">
                 <div class="col-sm">
                     <div class="shadow p-3 mb-5 rounded" id="a1PB">
@@ -158,32 +193,20 @@
                     </div>
                 </div>          
             </div>
-            <h4 class="text-center font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Aenean nec quam et elit luctus posuere. Nullam ac dolor in mi vestibulum tristique vitae
-                    nec velit. Nunc vestibulum commodo urna. Aenean sagittis justo vel vulputate ultricies. 
-                    Aenean et sagittis sem. Nunc quis enim quis nisi tempus molestie vitae eget urna. Morbi
-                    quis luctus urna. Proin congue facilisis velit in malesuada.
+            <h4 class="text-center font-weight-light">
             </h4>
         </div>
     </div>
-    <div class="container-a" id="search">
-            <div class="align-middle justify-content-center">
-                <h1 class="display-3 text-center">Search for Past Articles:</h1>
-                <div class="input-group mb-3 ml-auto mr-auto justify-content-center"style="width:30%; padding-top: 100px; padding-bottom: 100px">
-                    <input id="searchBar" type="text" class="form-control" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2">
-                </div>  
-                <div>
-                    <p class="h6 text-center">placeholder placeholder placeholder placeholder placeholder placeholder 
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                            placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder 
-                    </p>
-                </div>  
-            </div>
-        </div>
+
+    <div class="text-center">
+        <p>
+            Want in on the action? <a class="link" id="underline" href="signup.html">Make an account</a> or <a class="link" id="underline" href="login.html">login</a>, if you already have one. 
+            </br>
+            <small>Copyright 2019, Savannah Evans and Jerrett Rende</small>
+        </p>
+    </div>
+
+    <!--need a footer -->
+    
 </body>
 </html>
