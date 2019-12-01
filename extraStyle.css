@@ -3,7 +3,21 @@ classes: .class{}
 ids: #{}
 classic elts: body{}
 */
+@font-face {
+    font-family: "CustomFont";
+    src: url("CustomFont.eot");
+    src: url("CustomFont.woff") format("woff"),
+    
+}
 
+body {
+    font-family: 'Roboto';
+}
+
+.linkColor {
+    color: black;
+}
+  
 .container-a {
     background: #3D5F73;
 }
