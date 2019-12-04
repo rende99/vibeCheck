@@ -68,7 +68,7 @@ async function getArticles(){
             let sliderValue = $(`#a${i}Range`).val();
             $(`#a${i}PB`).css("background", `rgb(${255+(sliderValue*15)}, ${255-Math.abs(sliderValue*15)}, ${255-(sliderValue*15)})`);
         }
-        $(`<html><div class="text-center p-3" style="font-size: 20px; padding-bottom: 40px;">Click <a href="analysis.html">here</a> to see the sitewide analysis for each article.</div></html>`)
+        $(`<html><div class="text-center p-3" style="font-size: 20px; padding-bottom: 40px;">Click <a href="analysis.html">here</a> to see the sitewide analysis for each of today's articles.</div></html>`)
         .insertAfter('#instructions');
         document.getElementById('instructions').innerHTML = "You've already completed your analysis for today! Come back tomorrow for another set of articles.";
         document.getElementById('finishButton').classList.add("invisible");
