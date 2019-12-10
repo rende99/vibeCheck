@@ -261,6 +261,10 @@ function colorIt(i){
 
 $(document).ready(function () {    
     //setInterval(getTimeToNext, 1000);
+    let seed = Math.floor(Math.random()*3); //0, 1, or 2
+    if(seed == 0) $('#logo').attr('src', 'img/vibeCheck.png');
+    if(seed == 1) $('#logo').attr('src', 'img/vibeCheckM.png');
+    if(seed == 2) $('#logo').attr('src', 'img/vibeCheckY.png');
     getArticleInfo();
     
 });

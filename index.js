@@ -55,6 +55,10 @@ function searchHandle(arr){
 
 
 $(document).ready(async function () {
+    let seed = Math.floor(Math.random()*3); //0, 1, or 2
+    if(seed == 0) $('#logo').attr('src', 'img/vibeCheck.png');
+    if(seed == 1) $('#logo').attr('src', 'img/vibeCheckM.png');
+    if(seed == 2) $('#logo').attr('src', 'img/vibeCheckY.png');
     getRecentArticles();
     let pubResponse = await axios.get("http://localhost:3000/public/reviewed");
     pubResponse = pubResponse.data;

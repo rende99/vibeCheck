@@ -34,19 +34,17 @@ async function getArticles(){
         let newsResponse = await axios({
             url: "https://newsapi.org/v2/top-headlines?country=us&language=en&apiKey=1f5ab45295f640fe8a9b397a85acfde5",
         });
-        //alert(JSON.stringify(newsResponse.data.articles[0].title));
         let numFound = 0;
         for(let i = 0; numFound < 5; i++){
-            if((newsResponse.data.articles[i].url.includes("nytimes.com") || newsResponse.data.articles[i].url.includes("cnn.com")
-            || newsResponse.data.articles[i].url.includes("wsj.com")  || newsResponse.data.articles[i].url.includes("yahoo.com")
-            || newsResponse.data.articles[i].url.includes("google.com")  || newsResponse.data.articles[i].url.includes("huffingtonpost")
-            || newsResponse.data.articles[i].url.includes("foxnews.com")  || newsResponse.data.articles[i].url.includes("nbcnews.com")
-            || newsResponse.data.articles[i].url.includes("dailymail.c") || newsResponse.data.articles[i].url.includes("theguardian.com"))
-            && !newsResponse.data.articles[i].title.includes("Washington Post")){
+            //alert(newsResponse.data.articles[i].url);
+            if(typeof newsResponse.data.articles[i].url !== undefined
+            && !newsResponse.data.articles[i].title.includes("Washington Post") && !newsResponse.data.articles[i].url.includes("youtube.com")){
                 newsResponse.data.articles[i].title.replace(`"`, ``);
                 newsResponse.data.articles[i].title.replace(`'`, ``);
                 document.getElementById(`a${numFound+1}Title`).innerHTML = newsResponse.data.articles[i].title;
+//                alert(document.getElementById(`a${numFound+1}Title`).innerHTML);
                 document.getElementById(`articleLink${numFound+1}`).setAttribute("href", newsResponse.data.articles[i].url);
+                //alert(numFound);
                 numFound++;
             }
         }
@@ -241,7 +239,7 @@ function getTimeToNext(){
     let seconds = Math.floor((t % (1000 * 60)) / 1000); 
     seconds = seconds > 9 ? seconds : "0" + seconds;
     //alert(`${hours}:${minutes}:${seconds}`);
-    document.getElementById('timer').innerHTML = `New Articles in: ${hours}:${minutes}:${seconds}`;
+    //document.getElementById('timer').innerHTML = `New Articles in: ${hours}:${minutes}:${seconds}`;
 }
 
 function searchHandle(arr){
@@ -281,6 +279,12 @@ function searchHandle(arr){
 
 
 $(document).ready(async function () {
+    //put up logo
+    let seed = Math.floor(Math.random()*3); //0, 1, or 2
+    if(seed == 0) $('#logo').attr('src', 'img/vibeCheck.png');
+    if(seed == 1) $('#logo').attr('src', 'img/vibeCheckM.png');
+    if(seed == 2) $('#logo').attr('src', 'img/vibeCheckY.png');
+
     getArticles();
     let pubResponse = await axios.get("http://localhost:3000/public/reviewed");
     pubResponse = pubResponse.data;
