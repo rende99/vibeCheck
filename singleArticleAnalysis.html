@@ -9,6 +9,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="extraStyle.css">
@@ -31,15 +35,16 @@
 
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="singleArticleAnalysis.js" type="module"></script>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <script src="landing.js" type="module"></script>
+    
+    <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">TBD</a>
-
-        <div class="collapse navbar-collapse" id="navbar">
+        <a href=landing.html><i class="fas fa-arrow-left fa-3x" id="iconbutton"></i></a>
+    </nav>
+        <!-- <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link" onClick="document.getElementById('news').scrollIntoView();">Home <span
@@ -58,9 +63,9 @@
                 </li>
             </ul>
 
-        </div>
-    </nav>
-    <div class="container-b container-fluid justify-content-center text-center" id="news">
+        </div> -->
+    
+    <div class="container container-fluid justify-content-center text-center" id="news"   style="font-family: 'Roboto';">
             <h1 class="h1 text-center p-4">Article Analysis</h1>
             <div class="accordion container" id="accordionExample">
                 <div class="card">
