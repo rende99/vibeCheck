@@ -31,20 +31,26 @@ export default function pageLoaded() {
         let userEducation = $('#educationSelector').val();
         let userRace = $('#raceSelector').val();
         let userAffiliation = $('#affiliationSelector input:radio:checked').val();
-        
-        let createResponse = await axios.post('http://localhost:3000/account/create',
-        {
-            name: userName,
-            pass: pass,
-            data: {
-                'userGender': userGender,
-                'userAge': userAge,
-                'userLocation': userLocation,
-                'userEducation': userEducation,
-                'userRace': userRace,
-                'userAffiliation': userAffiliation
-            }
-        });
+        try{
+            let createResponse = await axios.post('http://localhost:3000/account/create',
+            {
+                name: userName,
+                pass: pass,
+                data: {
+                    'userGender': userGender,
+                    'userAge': userAge,
+                    'userLocation': userLocation,
+                    'userEducation': userEducation,
+                    'userRace': userRace,
+                    'userAffiliation': userAffiliation
+                }
+            });
+        }catch(error){
+            $('#errorText').remove();
+            $('#cred').append('<h1 id="errorText" class="text-center h3" style="color:red"><b>Username already in use</b></h1>');
+            return;
+        }
+
 
         //debugger;
 
