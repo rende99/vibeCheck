@@ -21,7 +21,6 @@
 
 <body>
 
-    <script src="landing.js" type="module"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -34,8 +33,41 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+
+    <!-- firebase below -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
+
+
+    <script> 
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyClCKrLDLuX1XxJeRpDvpcGTkFxDNA98Ow",
+        authDomain: "vibecheck-ee34b.firebaseapp.com",
+        databaseURL: "https://vibecheck-ee34b.firebaseio.com",
+        projectId: "vibecheck-ee34b",
+        storageBucket: "vibecheck-ee34b.appspot.com",
+        messagingSenderId: "403917839965",
+        appId: "1:403917839965:web:420eb98fe66a83331c37b4",
+        measurementId: "G-8D6NNTV21N"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    <!-- end firebase -->
+
+
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="analysis.js" type="module"></script>
+
 
     <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
@@ -78,6 +110,45 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
                                         <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div    id="10"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRange0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">0-17 Years</b></p>
+                                        </div>
+                                        <div    id="11"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRange1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">18-24 Years</b></p>
+                                        </div>
+                                        <div    id="12"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a1AnalysisRange2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">25-39 Years</b></p>
+                                        </div>
                                         <div    id="13"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
@@ -89,7 +160,7 @@
                                             <div class="col-sm">
                                                 <b>C</b>
                                             </div>
-                                            <p><b id="captionBottom">0-17 Years</b></p>
+                                            <p><b id="captionBottom">40-59 Years</b></p>
                                         </div>
                                         <div    id="14"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
@@ -98,45 +169,6 @@
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
                                                     id="a1AnalysisRange4">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">18-24 Years</b></p>
-                                        </div>
-                                        <div    id="15"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a1AnalysisRange5">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">25-39 Years</b></p>
-                                        </div>
-                                        <div    id="16"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a1AnalysisRange6">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">40-59 Years</b></p>
-                                        </div>
-                                        <div    id="17"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a1AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -151,26 +183,26 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a1PB">
                                         <p><b id="captionTop">Perceived Bias by Gender</b></p>
-                                        <div    id="10"     class="row text-center justify-content-center rounded">
+                                        <div    id="15"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a1AnalysisRange0">
+                                                    id="a1AnalysisRange5">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
                                             </div>
                                             <p><b id="captionBottom">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMale&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
                                         </div>
-                                        <div    id="11"     class="row text-center justify-content-center rounded">
+                                        <div    id="16"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a1AnalysisRange1">
+                                                    id="a1AnalysisRange6">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -178,13 +210,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbspFemale&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="12"     class="row text-center justify-content-center rounded">
+                                        <div    id="17"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a1AnalysisRange2">
+                                                    id="a1AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -554,6 +586,48 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
                                         <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div    id="20"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRange0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">0-17 Years</b></p>
+
+                                        </div>
+                                        <div    id="21"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRange1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">18-24 Years</b></p>
+
+                                        </div>
+                                        <div    id="22"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a2AnalysisRange2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">25-39 Years</b></p>
+
+                                        </div>
                                         <div    id="23"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
@@ -565,7 +639,7 @@
                                             <div class="col-sm">
                                                 <b>C</b>
                                             </div>
-                                            <p><b id="captionBottom">0-17 Years</b></p>
+                                            <p><b id="captionBottom">40-59 Years</b></p>
 
                                         </div>
                                         <div    id="24"     class="row text-center justify-content-center rounded">
@@ -575,48 +649,6 @@
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
                                                     id="a2AnalysisRange4">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">18-24 Years</b></p>
-
-                                        </div>
-                                        <div    id="25"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a2AnalysisRange5">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">25-39 Years</b></p>
-
-                                        </div>
-                                        <div    id="26"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a2AnalysisRange6">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">40-59 Years</b></p>
-
-                                        </div>
-                                        <div    id="27"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a2AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -632,13 +664,13 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a2PB">
                                         <p><b id="captionTop">Perceived Bias by Gender</b></p>
-                                        <div    id="20"     class="row text-center justify-content-center rounded">
+                                        <div    id="25"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a2AnalysisRange0">
+                                                    id="a2AnalysisRange5">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -646,13 +678,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMale&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="21"     class="row text-center justify-content-center rounded">
+                                        <div    id="26"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a2AnalysisRange1">
+                                                    id="a2AnalysisRange6">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -660,13 +692,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbspFemale&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="22"     class="row text-center justify-content-center rounded">
+                                        <div    id="27"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a2AnalysisRange2">
+                                                    id="a2AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1036,6 +1068,48 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
                                         <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div    id="30"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRange0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">0-17 Years</b></p>
+
+                                        </div>
+                                        <div    id="31"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRange1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">18-24 Years</b></p>
+
+                                        </div>
+                                        <div    id="32"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a3AnalysisRange2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">25-39 Years</b></p>
+
+                                        </div>
                                         <div    id="33"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
@@ -1047,7 +1121,7 @@
                                             <div class="col-sm">
                                                 <b>C</b>
                                             </div>
-                                            <p><b id="captionBottom">0-17 Years</b></p>
+                                            <p><b id="captionBottom">40-59 Years</b></p>
 
                                         </div>
                                         <div    id="34"     class="row text-center justify-content-center rounded">
@@ -1057,48 +1131,6 @@
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
                                                     id="a3AnalysisRange4">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">18-24 Years</b></p>
-
-                                        </div>
-                                        <div    id="35"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a3AnalysisRange5">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">25-39 Years</b></p>
-
-                                        </div>
-                                        <div    id="36"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a3AnalysisRange6">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">40-59 Years</b></p>
-
-                                        </div>
-                                        <div    id="37"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a3AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1114,13 +1146,13 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a3PB">
                                         <p><b id="captionTop">Perceived Bias by Gender</b></p>
-                                        <div    id="30"     class="row text-center justify-content-center rounded">
+                                        <div    id="35"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a3AnalysisRange0">
+                                                    id="a3AnalysisRange5">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1128,13 +1160,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMale&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="31"     class="row text-center justify-content-center rounded">
+                                        <div    id="36"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a3AnalysisRange1">
+                                                    id="a3AnalysisRange6">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1142,13 +1174,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbspFemale&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="32"     class="row text-center justify-content-center rounded">
+                                        <div    id="37"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a3AnalysisRange2">
+                                                    id="a3AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1518,6 +1550,48 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
                                         <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div    id="40"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRange0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">0-17 Years</b></p>
+
+                                        </div>
+                                        <div    id="41"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRange1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">18-24 Years</b></p>
+
+                                        </div>
+                                        <div    id="42"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a4AnalysisRange2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">25-39 Years</b></p>
+
+                                        </div>
                                         <div    id="43"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
@@ -1529,7 +1603,7 @@
                                             <div class="col-sm">
                                                 <b>C</b>
                                             </div>
-                                            <p><b id="captionBottom">0-17 Years</b></p>
+                                            <p><b id="captionBottom">40-59 Years</b></p>
 
                                         </div>
                                         <div    id="44"     class="row text-center justify-content-center rounded">
@@ -1539,48 +1613,6 @@
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
                                                     id="a4AnalysisRange4">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">18-24 Years</b></p>
-
-                                        </div>
-                                        <div    id="45"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a4AnalysisRange5">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">25-39 Years</b></p>
-
-                                        </div>
-                                        <div    id="46"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a4AnalysisRange6">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">40-59 Years</b></p>
-
-                                        </div>
-                                        <div    id="47"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a4AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1596,13 +1628,13 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a4PB">
                                         <p><b id="captionTop">Perceived Bias by Gender</b></p>
-                                        <div    id="40"     class="row text-center justify-content-center rounded">
+                                        <div    id="45"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a4AnalysisRange0">
+                                                    id="a4AnalysisRange5">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1610,13 +1642,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMale&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="41"     class="row text-center justify-content-center rounded">
+                                        <div    id="46"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a4AnalysisRange1">
+                                                    id="a4AnalysisRange6">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -1624,13 +1656,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbspFemale&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="42"     class="row text-center justify-content-center rounded">
+                                        <div    id="47"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a4AnalysisRange2">
+                                                    id="a4AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -2000,6 +2032,48 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
                                         <p><b id="captionTop">Perceived Bias by Age</b></p>
+                                        <div    id="50"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRange0">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">0-17 Years</b></p>
+
+                                        </div>
+                                        <div    id="51"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRange1">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">18-24 Years</b></p>
+
+                                        </div>
+                                        <div    id="52"     class="row text-center justify-content-center rounded">
+                                            <div class="col-sm">
+                                                <b>L</b>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="range" disabled min="-10" max="10" class="custom-range"
+                                                    id="a5AnalysisRange2">
+                                            </div>
+                                            <div class="col-sm">
+                                                <b>C</b>
+                                            </div>
+                                            <p><b id="captionBottom">25-39 Years</b></p>
+
+                                        </div>
                                         <div    id="53"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
@@ -2011,7 +2085,7 @@
                                             <div class="col-sm">
                                                 <b>C</b>
                                             </div>
-                                            <p><b id="captionBottom">0-17 Years</b></p>
+                                            <p><b id="captionBottom">40-59 Years</b></p>
 
                                         </div>
                                         <div    id="54"     class="row text-center justify-content-center rounded">
@@ -2021,48 +2095,6 @@
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
                                                     id="a5AnalysisRange4">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">18-24 Years</b></p>
-
-                                        </div>
-                                        <div    id="55"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a5AnalysisRange5">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">25-39 Years</b></p>
-
-                                        </div>
-                                        <div    id="56"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a5AnalysisRange6">
-                                            </div>
-                                            <div class="col-sm">
-                                                <b>C</b>
-                                            </div>
-                                            <p><b id="captionBottom">40-59 Years</b></p>
-
-                                        </div>
-                                        <div    id="57"     class="row text-center justify-content-center rounded">
-                                            <div class="col-sm">
-                                                <b>L</b>
-                                            </div>
-                                            <div class="col-7">
-                                                <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a5AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -2078,13 +2110,13 @@
                                 <div class="card shadow p-3 mb-5 rounded ">
                                     <div class="p-3 mb-5 rounded " style="background-color:rgb(255,255,255)" id="a5PB">
                                         <p><b id="captionTop">Perceived Bias by Gender</b></p>
-                                        <div    id="50"     class="row text-center justify-content-center rounded">
+                                        <div    id="55"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a5AnalysisRange0">
+                                                    id="a5AnalysisRange5">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -2092,13 +2124,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMale&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="51"     class="row text-center justify-content-center rounded">
+                                        <div    id="56"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a5AnalysisRange1">
+                                                    id="a5AnalysisRange6">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>
@@ -2106,13 +2138,13 @@
                                             <p><b id="captionBottom">&nbsp&nbsp&nbspFemale&nbsp&nbsp&nbsp</b></p>
 
                                         </div>
-                                        <div    id="52"     class="row text-center justify-content-center rounded">
+                                        <div    id="57"     class="row text-center justify-content-center rounded">
                                             <div class="col-sm">
                                                 <b>L</b>
                                             </div>
                                             <div class="col-7">
                                                 <input type="range" disabled min="-10" max="10" class="custom-range"
-                                                    id="a5AnalysisRange2">
+                                                    id="a5AnalysisRange7">
                                             </div>
                                             <div class="col-sm">
                                                 <b>C</b>

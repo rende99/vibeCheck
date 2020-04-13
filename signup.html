@@ -8,11 +8,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="extraStyle.css">
+    <link rel="stylesheet" href="bootstrap-social.css">
+    <link rel="stylesheet" href="font-awesome.min.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <title>Sign up</title>
 </head>
@@ -21,32 +25,86 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="signup.js" type="module"></script>
-    <script src="index.js" type="module"></script>
+
+    <!-- firebase below -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
+
+
+    <script> 
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyClCKrLDLuX1XxJeRpDvpcGTkFxDNA98Ow",
+        authDomain: "vibecheck-ee34b.firebaseapp.com",
+        databaseURL: "https://vibecheck-ee34b.firebaseio.com",
+        projectId: "vibecheck-ee34b",
+        storageBucket: "vibecheck-ee34b.appspot.com",
+        messagingSenderId: "403917839965",
+        appId: "1:403917839965:web:420eb98fe66a83331c37b4",
+        measurementId: "G-8D6NNTV21N"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
 
     <div class="p-3">
-        <a href="landing.html"><img id="logo" src="" height="100" width="100"></a>    </div>
+        <a href="index.html"><img id="logo" src="" height="100" width="100"></a>    
+    </div>
     
+    <h1 id="cred" class="text-center h1">Create A New Account</h1>
+    <div class="text-center">
+        <small>Already have an account? <a href="login.html">login here</a></small>
+    </div>
     <div class="container" id="firstContainer" style="width: 50%">
-        
-        <h1 id="cred" class="text-center h1">Create A New Account</h1>
         <form>
-            <div class="text-center">
-                        <small>already have an account? <a href="login.html">login here</a></small>
+            <div style="padding: 20px; color: white;">
+                <a class="btn btn-block btn-social btn-google" id="googleSignInButton">
+                    <span class="fa fa-google"></span> Sign in with Google
+                </a>
+                <!--
+                <a class="btn btn-block btn-social btn-facebook" id="facebookSignInButton">
+                    <span class="fa fa-facebook"></span> Sign in with Facebook
+                </a>
+                <a class="btn btn-block btn-social btn-twitter" id="twitterSignInButton">
+                    <span class="fa fa-twitter"></span> Sign in with Twitter
+                </a>
+                -->
+                
             </div>
+            <p class="text-center"><b>Or</b></p>
             <div class="form-group">
                 <label for="userEmail">Email address</label>
                 <input type="email" class="form-control" id="userEmail" placeholder="Enter Email">
+                <small id="emailHelp" class="text-danger" hidden>
+                    Email address is invalid or already in use.
+                </small>  
             </div>
             <div class="form-group">
                 <label for="userPassword">Password</label>
                 <input type="password" class="form-control" id="userPassword" placeholder="Create Password">
+                <small id="passwordHelp" class="text-danger" hidden>
+                    Password must be longer than 6 characters.
+                </small>  
             </div>
-            
         </form>
+        <a class="btn btn-primary pull-right" href="#" role="button" id="signUpButton">Sign Up</a>
     </div>
+    
+    <!--
+    <div class="container">
+        <h1 id="cred" style="padding-top: 20px;" class="text-center h1">...And a few questions:</h1>
+    </div>
+
     <div class="container" id="hid2" style="width: 40%; padding: 40px;" onsubmit="return false">
         <form onsubmit="return false">
             <div class="form-group shadow p-3 mb-5 bg-white rounded" id="genderSelector">
@@ -169,7 +227,7 @@
                 </div>
             </div>
             <div class="form-group shadow p-3 mb-5 bg-white rounded" id="affiliationSelector">
-                <h4>Where on the Political Spectrum are you?</h4>
+                <h4>Where do you fall on the political spectrum?</h4>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="altright" value="altright">
                     <label class="form-check-label" for="altright">
@@ -212,7 +270,7 @@
     </div>
 
 
-
+    -->
  
 </body>
 </html>

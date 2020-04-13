@@ -25,6 +25,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
+    <!-- firebase below -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
+
+
+    <script> 
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyClCKrLDLuX1XxJeRpDvpcGTkFxDNA98Ow",
+        authDomain: "vibecheck-ee34b.firebaseapp.com",
+        databaseURL: "https://vibecheck-ee34b.firebaseio.com",
+        projectId: "vibecheck-ee34b",
+        storageBucket: "vibecheck-ee34b.appspot.com",
+        messagingSenderId: "403917839965",
+        appId: "1:403917839965:web:420eb98fe66a83331c37b4",
+        measurementId: "G-8D6NNTV21N"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    <!-- end firebase -->
+
+
+
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="index.js" type="module"></script>
 
@@ -59,22 +91,8 @@
 
     <div class="container container-fluid">
             <div class="row justify-content-center text-center" style="padding-bottom: 15px;">
-                <!--
-                <div class="col" style="padding: 0px">
-                    <img class="img-fluid" src="img/vibeCheck.png" width="250" height="200">
-                </div>
-                <div class="col" style="padding: 0px">
-                    <img class="img-fluid" src="img/vibeCheckM.png" width="250" height="200">
-                </div>
-                <div class="col" style="padding: 0px">
-                    <img class="img-fluid" src="img/vibeCheckY.png" width="250" height="200">
-                </div>
-                -->
                 <h1 class="h1">Welcome to Vibe Check.</h1>
             </div>
-            
-            
-
             <div>
                 <div class="container  width: 300px">
                         <div class="row"  style="font-size: 20px; font-weight: light;">
@@ -112,7 +130,7 @@
             <div class="row text-center justify-content-center" style="padding-top: 30px;">
                 <div class="col-sm">
                     <div class="shadow p-3 mb-5 rounded" id="a1PB">
-                        <h5 id="a1">Article 1</h5>
+                        <a id="a1href" target="_blank"><h5 id="a1">...</h5></a>
                         <div class="row text-center justify-content-center rounded">
                             <div class="col-sm" style="padding: 0px;">
                                 <b>Liberal</b>
@@ -129,7 +147,7 @@
                 </div>
                 <div class="col-sm">
                     <div class="shadow p-3 mb-5 rounded" id="a2PB">
-                        <h5 id="a2">Article 2</h5>
+                        <a id="a2href" target="_blank"><h5 id="a2">...</h5></a>
                         <div class="row text-center justify-content-center rounded">
                             <div class="col-sm" style="padding: 0px;">
                                 <b>Liberal</b>
@@ -146,7 +164,7 @@
                 </div>
                 <div class="col-sm">
                     <div class="shadow p-3 mb-5 rounded" id="a3PB">
-                        <h5 id="a3">Article 3</h5>
+                        <a id="a3href" target="_blank"><h5 id="a3">...</h5></a>
                         <div class="row text-center justify-content-center rounded">
                             <div class="col-sm" style="padding: 0px;">
                                 <b>Liberal</b>
@@ -165,7 +183,7 @@
             <div class="row text-center justify-content-center">
                 <div class="col-sm">
                     <div class="shadow p-3 mb-5 rounded" id="a4PB">
-                        <h5 id="a4">Article 4</h5>
+                        <a id="a4href" target="_blank"><h5 id="a4">...</h5></a>
                         <div class="row text-center justify-content-center rounded">
                             <div class="col-sm">
                                 <b>Liberal</b>
@@ -182,7 +200,7 @@
                 </div>
                 <div class="col-sm">
                     <div class="shadow p-3 mb-5 rounded" id="a5PB">
-                        <h5 id="a5">Article 5</h5>
+                        <a id="a5href" target="_blank"><h5 id="a5">...</h5></a>
                         <div class="row text-center justify-content-center rounded">
                             <div class="col-sm">
                                 <b>Liberal</b>
@@ -213,9 +231,9 @@
     <div class="container container-fluid text-center" style="padding-top: 100px; padding-bottom: 100px;">
         <h1 class="h1 text-center">Article Database:</h1>
         <p>Interested in seeing analytics from past articles? Search for them here.</p>
-        <div class="justify-content-center text-center" style="padding-top: 25px;">
+        <div class="justify-content-center text-center" style="padding-top: 20px; padding-bottom: 20px;">
             <input id="searchBar" list="searchAuto" autocomplete="off" style="width:500px;" type="text" class="form-control justify-content-center mx-lg-auto" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2" style="vertical-align: middle">
-            <datalist id="searchAuto">                    
+            <datalist id="searchAuto">
             </datalist>
         </div>
     </div>

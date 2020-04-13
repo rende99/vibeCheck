@@ -23,6 +23,37 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
     <script src="node_modules/axios/dist/axios.js"></script>
+
+    <!-- firebase below -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
+
+
+    <script> 
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyClCKrLDLuX1XxJeRpDvpcGTkFxDNA98Ow",
+        authDomain: "vibecheck-ee34b.firebaseapp.com",
+        databaseURL: "https://vibecheck-ee34b.firebaseio.com",
+        projectId: "vibecheck-ee34b",
+        storageBucket: "vibecheck-ee34b.appspot.com",
+        messagingSenderId: "403917839965",
+        appId: "1:403917839965:web:420eb98fe66a83331c37b4",
+        measurementId: "G-8D6NNTV21N"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    <!-- end firebase -->
+
     <script src="profile.js" type="module"></script>
 
     <div class="p-3">
@@ -32,11 +63,9 @@
     <div class="container" id="firstContainer" style="width: 50%">
         
         <h1 class="text-center h1">Your Profile</h1>
+        <!--
         <h1 id="cred" class="text-center h6">Enter your credentials before making changes:</h1>
-
-
         <form>
-
             <div class="form-group">
                 <label for="userEmail">Email address</label>
                 <input type="email" class="form-control" id="userEmail" placeholder="Enter Email">
@@ -45,8 +74,8 @@
                 <label for="userPassword">Password</label>
                 <input type="password" class="form-control" id="userPassword" placeholder="Create Password">
             </div>
-            
         </form>
+        -->
     </div>
     <div class="container" id="hid2" style="width: 40%; padding: 40px;" onsubmit="return false">
         <form onsubmit="return false">
@@ -75,7 +104,7 @@
         <form onsubmit="return false">
             <div class="form-group shadow p-3 mb-5 bg-white rounded">
                 <h4>What is your Age?</h4>
-                <input type="" class="form-control" id="userAge" placeholder="Enter Age">
+                <input type="number" class="form-control" id="userAge" placeholder="Enter Age" onkeypress="return Number.isInteger(parseInt(event.key));" max="120" min="0" onpaste="return false;">
             </div>
             <div class="form-group shadow p-3 mb-5 bg-white rounded">
                 <h4>Where are you from?</h4>
@@ -209,13 +238,9 @@
                 </div>
             </div>
         </form>
-        <a class="btn btn-primary" href="#" role="button" id="submitButton">Submit Changes</a>
-        <a class="btn btn-danger float-right" href="#" role="button" id="deleteButton">Delete Account</a>
+        <a class="btn btn-primary float-right" href="#" role="button" id="submitButton" style="margin-bottom: 40px;">Submit Changes</a>
 
 
     </div>
 
-
-
- 
 </body>

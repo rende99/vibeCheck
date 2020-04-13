@@ -28,6 +28,37 @@
 
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="landing.js" type="module"></script>
+
+    <!-- firebase below -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-storage.js"></script>
+
+
+    <script> 
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyClCKrLDLuX1XxJeRpDvpcGTkFxDNA98Ow",
+        authDomain: "vibecheck-ee34b.firebaseapp.com",
+        databaseURL: "https://vibecheck-ee34b.firebaseio.com",
+        projectId: "vibecheck-ee34b",
+        storageBucket: "vibecheck-ee34b.appspot.com",
+        messagingSenderId: "403917839965",
+        appId: "1:403917839965:web:420eb98fe66a83331c37b4",
+        measurementId: "G-8D6NNTV21N"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+
+
     <div class="container-b">
         <nav class="navbar navbar-expand-lg">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,15 +85,23 @@
                         <h5 class="h5 text-center" id="timer">New Articles in: </h5>
                         
                     </div> -->
-                    <div class="container container-flex text-center"> 
+
+                    <div class="container container-flex text-center" id="profileButton"> 
                         <div class="col">
-                        <div class="row justify-content-center">
-                        <a href="profile.html"> <i class="fas fa-user fa-2x" id="iconbutton" style="size: 200%"></i></a>
-                        </div>
-                        <div class="row">Edit Profile</div>
+                            <div class="row justify-content-center">
+                                <a> <i class="fas fa-user fa-2x" id="iconbutton" style="size: 200%"></i></a>
+                            </div>
+                            <div class="row">Profile</div>
                         </div>
                     </div>                           
-                    
+                    <div class="container container-flex text-center" id="signoutButton">
+                        <div class="col">
+                            <div class="row justify-content-center">
+                                <a> <i class="fas fa-sign-out-alt fa-2x" id="iconbutton" style="size: 200%"></i></a>
+                            </div>
+                            <div class="row">Sign out</div>
+                        </div>
+                    </div>
                 </ul>
                     
             </div>
@@ -104,13 +143,13 @@
 
 
     <div class="container" id="news" style"">
-            <div class="row-sm-5 text-justify text-center" style="font-size: 35px; ">
+            <div class="row-sm-5 text-justify text-center" style="font-size: 35px; padding: 20px;">
                     Today's Articles:
             </div>
         <div class="container-fluid align-middle">
             <div class="row text-center justify-content-center">
                 <div class="col-sm">
-                    <a id="articleLink1" target="_blank" href="http://google.com">
+                    <a id="articleLink1" target="_blank">
                     <div id="a1container" class="shadow p-3 mb-5 bg-white rounded">
                         <h4 id="a1Title">...</h4>
                     </div>
@@ -136,7 +175,7 @@
             </div>
             <div class="row text-center justify-content-center">
                 <div class="col-sm">
-                    <a id="articleLink2" target="_blank" href="http://google.com">
+                    <a id="articleLink2" target="_blank" >
                     <div id="a2container" class="shadow p-3 mb-5 bg-white rounded">
                         <h4 id="a2Title">...</h4>
                     </div>
@@ -161,7 +200,7 @@
             </div>
             <div class="row text-center justify-content-center">
                 <div class="col-sm">
-                    <a id="articleLink3" target="_blank" href="http://google.com">
+                    <a id="articleLink3" target="_blank" >
                     <div id="a3container" class="shadow p-3 mb-5 bg-white rounded">
                         <h4 id="a3Title">...</h4>
                     </div>
@@ -186,7 +225,7 @@
             </div>
             <div class="row text-center justify-content-center">
                 <div class="col-sm">
-                    <a id="articleLink4" target="_blank" href="http://google.com">
+                    <a id="articleLink4" target="_blank" >
                     <div id="a4container" class="shadow p-3 mb-5 bg-white rounded">
                         <h4 id="a4Title">...</h4>
                     </div>
@@ -209,9 +248,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row text-center justify-content-center">
+            <div class="row text-center justify-content-center" id="finalArticleDiv">
                 <div class="col-sm">
-                    <a id="articleLink5" target="_blank" href="http://google.com">
+                    <a id="articleLink5" target="_blank" >
                     <div id="a5container" class="shadow p-3 mb-5 bg-white rounded">
                         <h4 id="a5Title">...</h4>
                     </div>
@@ -258,7 +297,7 @@
         <div class="container container-fluid text-center" style="padding-top: 100px; padding-bottom: 100px;">
             <h1 class="h1 text-center">Article Database:</h1>
             <p>Interested in seeing analytics from past articles? Search for them here.</p>
-            <div class="justify-content-center text-center" style="padding-top: 25px;">
+            <div class="justify-content-center text-center" style="padding-top: 20px; padding-bottom: 20px;">
                 <input id="searchBar" list="searchAuto" autocomplete="off" style="width:500px;" type="text" class="form-control justify-content-center mx-lg-auto" placeholder="Search for past articles..." aria-label="Search for past articles..." aria-describedby="basic-addon2" style="vertical-align: middle">
                 <datalist id="searchAuto">                    
                 </datalist>

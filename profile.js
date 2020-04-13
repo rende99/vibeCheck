@@ -1,22 +1,34 @@
 
 
-export default async function pageLoaded() {
+export default async function pageLoaded(user) {
     //get user info to set up profile page
-    const specialHeader = {
-        headers: {
-            Authorization: `Bearer ${document.cookie}`
-        }
-    };
-    let userInfo = await axios.get('http://localhost:3000/user/info', specialHeader);
+    //checked="true"
+    // get user info
+    let userGender
+    let userAge
+    let userLocation
+    let userEducation
+    let userRace
+    let userAffiliation
+    await firebase.firestore().collection('users').doc(user.email).get()
+    .then(function(doc){
+        userGender = doc.data().gender;
+        userAge = parseInt(doc.data().age);
+        userLocation = doc.data().location;
+        userEducation = doc.data().education;
+        userRace = doc.data().race;
+        userAffiliation = doc.data().affiliation;
+    })
 
-    userInfo = userInfo.data.result;
+
+    console.log(userGender)
     //set up profile page:s
-    document.getElementById(`${userInfo.userGender}Radio`).checked = true;
-    document.getElementById(`userAge`).value = userInfo.userAge;
-    $(`select option[value=${userInfo.userLocation}]`).attr("selected", true);
-    $(`select option[value=${userInfo.userEducation}]`).attr("selected", true);
-    $(`select option[value=${userInfo.userRace}]`).attr("selected", true);
-    document.getElementById(`${userInfo.userAffiliation}`).checked = true;
+    document.getElementById(`${userGender}Radio`).checked = true;
+    document.getElementById(`userAge`).value = userAge;
+    $(`select option[value=${userLocation}]`).attr("selected", true);
+    $(`select option[value=${userEducation}]`).attr("selected", true);
+    $(`select option[value=${userRace}]`).attr("selected", true);
+    document.getElementById(`${userAffiliation}`).checked = true;
 
 
 
@@ -28,29 +40,29 @@ export default async function pageLoaded() {
         let userRace = $('#raceSelector').val();
         let userAffiliation = $('#affiliationSelector input:radio:checked').val();
         //save changes, kick to landing.html
-        let newInfo = await axios.post('http://localhost:3000/user/info',
-        {
-            data: {
-                'userGender': userGender,
-                'userAge': userAge,
-                'userLocation': userLocation,
-                'userEducation': userEducation,
-                'userRace': userRace,
-                'userAffiliation': userAffiliation
-            },
-        },
-            specialHeader
-        );
-        let userI = await axios.get('http://localhost:3000/user/info', specialHeader);
+        await firebase.firestore().collection('users').doc(user.email).set({
+            gender: userGender,
+            age: userAge,
+            location: userLocation,
+            education: userEducation,
+            race: userRace,
+            affiliation: userAffiliation
+        }, {merge: true})
         //alert(JSON.stringify(userI.data.result))
         window.location.href = "landing.html";
 
     });
+
+/*
     $('#deleteButton').on("click", async function(){
         let userName = $('#userEmail').val();
         let pass = $('#userPassword').val();
         //alert(userName);
         //delete account, kick to index.html
+        user.delete().then(function(){
+
+        })
+
         try{
             let newInfo = await axios.delete('http://localhost:3000/account/:' + userName,
             {
@@ -65,14 +77,20 @@ export default async function pageLoaded() {
             $('#errorText').remove();
             $('#cred').append('<h1 id="errorText" class="text-center h3" style="color:red"><b>Username or Password is incorrect</b></h1>');
         }
-
     });
-
+*/
 
 
 }
 
 
 $(document).ready(function () {
-    pageLoaded();
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            pageLoaded(user);
+        }else{
+            console.log("not logged in");
+            window.location.href = "index.html";
+        }
+    })
 });

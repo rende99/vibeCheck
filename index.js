@@ -2,77 +2,118 @@
 // const newsapi = new NewsAPI('1f5ab45295f640fe8a9b397a85acfde5');
 
 async function getRecentArticles(){
-    let recentResponse = await axios.get("http://localhost:3000/public/reviewed");
-    //Get the final 5 article names. put that in each title. Then search the data for each instance of the article name, and 
-    //get the average score. then put in a range with that score/color.
-    let length = recentResponse.data.result[recentResponse.data.result.length-1].articles.length;
-    for(let i = 1; i < 6; i++){
-        //get title of each article
-        let title = recentResponse.data.result[recentResponse.data.result.length-1].articles[length - i].title;
-        let score = recentResponse.data.result[recentResponse.data.result.length-1].articles[length - i].score;
-        document.getElementById(`a${i}`).innerHTML = title;
-        $(`#a${i}AnalysisRange`).val(score);
-        $(`#a${i}PB`).css("background", `rgb(${255+(score*15)}, ${255-Math.abs(score*15)}, ${255-(score*15)})`);
-    }
+    // Create a storage reference from our storage service
+    var db = firebase.firestore()
+    db.collection('articles')
+    .orderBy('dateadded', 'desc')
+    .limit(5)
+    .get()
+    .then((querySnapshot) => {
+        var i = 1;
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data().title}`);
+            // update HTML
+            var sumScores = doc.data().scoreArray.reduce(function(a, b){
+                return a + b;
+            }, 0);
+            var sumReviews = doc.data().nArray.reduce(function(a, b){
+                return a + b;
+            }, 0);
+            var avgscore = Math.floor(sumScores/sumReviews);
+            document.getElementById(`a${i}`).innerHTML = doc.data().title;
+            document.getElementById(`a${i}href`).setAttribute("href", doc.data().url);
+            document.getElementById(`a${i}href`).style.color = "black"
+
+            $(`#a${i}AnalysisRange`).val(avgscore);
+            $(`#a${i}PB`).css("background", `rgb(${255+(avgscore*15)}, ${255-Math.abs(avgscore*15)}, ${255-(avgscore*15)})`);
+
+            i++;
+        });
+    });
 
 
 }
 
-function searchHandle(arr){
-    //if(searchQuery)return;
+async function searchHandle(event){
     //firing each time the search bar is TYPED in.
     //get list of all titles of all articles
     let searchQuery = $('#searchBar').val();
-    //alert(searchQuery);
-    let clrID = setTimeout(()=>{
-        //remove datalist, if existing
-        let possibleTitles = [];
-        for(let i = 0; i < arr.length; i++){
-            if((arr[i].toLowerCase()).includes(searchQuery.toLowerCase())){
-                possibleTitles.push(arr[i]);
-            }
-        }
-        //alert(possibleTitles)
-        for(let i = 0; i < possibleTitles.length; i++){
-            //see if it already exists in the list.
-            $('option').remove();
-            //$(`#searchAuto`).(`<option value=\"${possibleTitles[i]}\"></option>`)
-        }
-        for(let i = 0; i < possibleTitles.length; i++){
-            $(`#searchAuto`).append(`<option value='${possibleTitles[i]}'></option>`)
-        }
-        //alert(possibleTitles);
-        //add datalist
+    //console.log(searchQuery);
+    //remove datalist, if existing
+    let possibleTitles = [];
+    
+    if(searchQuery==""){
+        $('option').remove();
+        return
+    }
+    await firebase.firestore().collection('articles').orderBy('title_lower')
+    .startAt(searchQuery.toLowerCase())
+    .endAt(searchQuery.toLowerCase()+'\uf8ff')
+    .limit(10).get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc) {
+            possibleTitles.push(doc.data().title);
+            console.log("awaiter", doc.data().title);
+        });
+    })
+
+
+
+    for(let i = 0; i < possibleTitles.length; i++){
+        //see if it already exists in the list.
+        $('option').remove();
+        //$(`#searchAuto`).(`<option value=\"${possibleTitles[i]}\"></option>`)
+    }
+    for(let i = 0; i < possibleTitles.length; i++){
+        $(`#searchAuto`).append(`<option value="${possibleTitles[i]}"></option>`)
+    }
+    //alert(possibleTitles);
+    //add datalist
+
 
         
-    }, 200);
+
     //DEBOUNCING AND ALL THAT SHOULD BE GOING ON AROUND HERE!!! THIS IS WHERE THE USER IS SEARCHING FOR SOMETHING!
     if (event.keyCode === 13) {
-        window.location.href = `singleArticleAnalysis.html?searchQuery=${searchQuery}`;
+        //enter pressed, make sure that there is an article we can go to.
+        var exists = false
+        await firebase.firestore().collection('articles').where("title", "==", searchQuery).get()
+        .then(function(querySnapshot){
+            querySnapshot.forEach(function(doc) {
+                exists = true
+            });
+        })
+    
+        if(exists){
+            window.location.href = `singleArticleAnalysis.html?searchQuery=${searchQuery}`;
+
+        }else{
+
+        }
     }
     //if click away, also clear the interval, also reset:
 }
 
 
 $(document).ready(async function () {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          window.location.href = "landing.html";
+        } else {
+          // No user is signed in.
+        }
+    });
     let seed = Math.floor(Math.random()*3); //0, 1, or 2
     if(seed == 0) $('#logo').attr('src', 'img/vibeCheck.png');
     if(seed == 1) $('#logo').attr('src', 'img/vibeCheckM.png');
     if(seed == 2) $('#logo').attr('src', 'img/vibeCheckY.png');
     getRecentArticles();
-    let pubResponse = await axios.get("http://localhost:3000/public/reviewed");
-    pubResponse = pubResponse.data;
-    //alert(JSON.stringify(pubResponse));
-    let allArticleTitles = [];
-    for(let k = 0; k < pubResponse.result.length; k++){
-        for(let j = 0; j < pubResponse.result[k].articles.length; j++){
-            allArticleTitles.push(pubResponse.result[k].articles[j].title);
-            //alert(pubResponse.result[k].articles[j].title);
-        }
-    }
-    let uniqueArticleTitles = [...new Set (allArticleTitles)];
+
+    var eSelect = document.getElementById('searchAuto');
+    //alert(storageRef.child('articles').fullPath)
+     
     //Article title array is filled. Add the event listener now:
-    $("#searchBar").keyup(function(){searchHandle(uniqueArticleTitles)});
+    $("#searchBar").keyup(function(){searchHandle(event)});
     
    
 });
